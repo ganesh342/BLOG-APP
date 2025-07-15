@@ -39,6 +39,11 @@ useEffect(() => {
      setIsEditing(false);
   setSelectedPost(null);
       try {
+         setBlogs((prevBlogs) => {
+     const updatedBlogs = isEdit
+     ? prevBlogs.map((blog) => (blog === selectedPost ? newBlog : blog)) : [...prevBlogs,newBlog]
+     return updatedBlogs;
+    }); // Add newly created blog
         if(isEdit === false)
         {
     const res = await axios.post('https://blog-app-ff1o.onrender.com/api/blogs/', newBlog);
@@ -48,11 +53,6 @@ useEffect(() => {
           const id = blogs.find((blog) => (blog._id === newBlog._id));
           const res = await axios.put(`https://blog-app-ff1o.onrender.com/api/blogs/${id}`, newBlog);
         }
-    setBlogs((prevBlogs) => {
-     const updatedBlogs = isEdit
-     ? prevBlogs.map((blog) => (blog === selectedPost ? newBlog : blog)) : [...prevBlogs,newBlog]
-     return updatedBlogs;
-    }); // Add newly created blog
   } catch (error) {
     console.error('Create Blog Error:', error);
   }
