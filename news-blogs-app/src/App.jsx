@@ -13,6 +13,7 @@ const App = () => {
   const fetchBlogs = async () => {
   try {
     const res = await axios.get('https://blog-app-ff1o.onrender.com/api/blogs/');
+    console.log(res.data);
     setBlogs(res.data);
   } catch (error) {
     console.error('Fetch Blogs Error:', error);
