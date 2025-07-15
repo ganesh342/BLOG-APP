@@ -37,7 +37,6 @@ useEffect(() => {
 
   const handleCreateBlog = async (newBlog,isEdit) => {
      setIsEditing(false);
-  setSelectedPost(null);
       try {
          setBlogs((prevBlogs) => {
      const updatedBlogs = isEdit
@@ -56,6 +55,7 @@ useEffect(() => {
   } catch (error) {
     console.error('Create Blog Error:', error);
   }
+  setSelectedPost(null);
   }
 
   const handleEditBlog = async (blogId,updatedBlog) => {
