@@ -12,7 +12,7 @@ const App = () => {
 
   const fetchBlogs = async () => {
   try {
-    const res = await axios.get('http://localhost:5000/api/blogs/');
+    const res = await axios.get('https://blog-app-ff1o.onrender.com/api/blogs/');
     setBlogs(res.data);
   } catch (error) {
     console.error('Fetch Blogs Error:', error);
@@ -41,7 +41,7 @@ useEffect(() => {
       try {
         if(isEdit === false)
         {
-    const res = await axios.post('http://localhost:5000/api/blogs/', newBlog);
+    const res = await axios.post('https://blog-app-ff1o.onrender.com/api/blogs/', newBlog);
         }
     setBlogs((prevBlogs) => {
      const updatedBlogs = isEdit
@@ -59,7 +59,7 @@ useEffect(() => {
     setShowNews(false);
     setShowBlogs(true);
       try {
-    const res = await axios.put(`http://localhost:5000/api/blogs/${blogId}`, updatedBlog);
+    const res = await axios.put(`https://blog-app-ff1o.onrender.com/api/blogs/${blogId}`, updatedBlog);
     setBlogs((prevBlogs) =>
       prevBlogs.map((blog) => (blog._id === blogId ? updatedBlog : blog))
     );
@@ -72,7 +72,7 @@ useEffect(() => {
     console.log("BLog deleted");
       try {
     setBlogs((prevBlogs) => prevBlogs.filter(blog => blog._id !== blogId));
-     await axios.delete(`http://localhost:5000/api/blogs/${blogId}`);
+     await axios.delete(`https://blog-app-ff1o.onrender.com/api/blogs/${blogId}`);
   } catch (error) {
     console.error('Delete Blog Error:', error);
   }
