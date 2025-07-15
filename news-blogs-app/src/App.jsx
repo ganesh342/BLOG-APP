@@ -51,7 +51,7 @@ useEffect(() => {
         }
         else 
         {
-          const mainblog = blogs.find((blog) => (blog.title === newBlog.title));
+          const mainblog = blogs.find((blog) => (blog.image === newBlog.image));
           console.log("mainblog",mainblog);
           const res = await axios.put(`https://blog-app-ff1o.onrender.com/api/blogs/${mainblog._id}`, newBlog);
           console.log("updated the blog with id",mainblog);
