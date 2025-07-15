@@ -43,6 +43,11 @@ useEffect(() => {
         {
     const res = await axios.post('https://blog-app-ff1o.onrender.com/api/blogs/', newBlog);
         }
+        else 
+        {
+          const id = blogs.find((blog) => (blog._id === newBlog._id));
+          const res = await axios.put(`https://blog-app-ff1o.onrender.com/api/blogs/${id}`, newBlog);
+        }
     setBlogs((prevBlogs) => {
      const updatedBlogs = isEdit
      ? prevBlogs.map((blog) => (blog === selectedPost ? newBlog : blog)) : [...prevBlogs,newBlog]
@@ -58,14 +63,8 @@ useEffect(() => {
     setIsEditing(true);
     setShowNews(false);
     setShowBlogs(true);
-      try {
-    const res = await axios.put(`https://blog-app-ff1o.onrender.com/api/blogs/${blogId}`, updatedBlog);
     setBlogs((prevBlogs) =>
-      prevBlogs.map((blog) => (blog._id === blogId ? updatedBlog : blog))
-    );
-  } catch (error) {
-    console.error('Edit Blog Error:', error);
-  }
+      prevBlogs.map((blog) => (blog._id === blogId ? updatedBlog : blog)));
   }
 
   const handleDeleteBlog = async (blogId) => {
