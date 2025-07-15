@@ -46,11 +46,13 @@ useEffect(() => {
         if(isEdit === false)
         {
     const res = await axios.post('https://blog-app-ff1o.onrender.com/api/blogs/', newBlog);
+    console.log("added the blog with new id",res);
         }
         else 
         {
           const id = blogs.find((blog) => (blog._id === newBlog._id));
           const res = await axios.put(`https://blog-app-ff1o.onrender.com/api/blogs/${id}`, newBlog);
+          console.log("updated the blog with id",id);
         }
   } catch (error) {
     console.error('Create Blog Error:', error);
